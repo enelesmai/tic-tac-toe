@@ -1,27 +1,30 @@
-# Bubble sort array
+# Tic Tac Toe
+
+In this project, the student builds a Tic Tac Toe game. The main goal is to put into practice the main concepts of Object Oriented Programming. Particularly, classes and access to their attributes.
 
 ## Project specifications
 
-bubble sort, where each element is compared to the one next to it and they are swapped if the one on the left is larger than the one on the right. This continues until the array is eventually sorted. 
+Build a tic-tac-toe game on the command line where two human players can play against each other and the board is displayed in between turns.
 
+more about the specifications  [Wikipedia]https://en.wikipedia.org/wiki/Tic-tac-toe
 
 ## Link to assignment
 
-the assignment can be found  [here](https://www.theodinproject.com/courses/ruby-programming/lessons/advanced-building-blocks).
+the assignment can be found  [here](https://www.theodinproject.com/courses/ruby-programming/lessons/oop).
 
 ## Built With
 
 Concepts used on this project
 
 - Ruby
-- Loops
+- OOP 
 - Yield
 
 Tools used on this project
 
 - Visual Studio Code
-- VSCode Ruby by Stafford Brunk
-- Rufo (Ruby Formatter) by Matt Bessey
+- VSCode Ruby by Stafford Brunk 0.27.0
+- Rubocop 0.8.3
 
 
 ## Screenshot
@@ -30,7 +33,7 @@ Tools used on this project
 
 ## Live Demo
 
-You can see the [live preview](https://repl.it/@RubenPaz/bubble-sort-ruby)
+You can see the [live preview](#)
 
 
 ## Authors
@@ -53,7 +56,7 @@ This is an education project as a part of the Microverse so contributing is not 
 
 Contributions, issues and feature requests are welcome!
 
-Feel free to check the [issues](https://github.com/rubenpazch/capstone-conference-page/issues).
+Feel free to check the [issues](https://github.com/enelesmai/tic-tac-toe/issues).
 
 ## Show your support
 
