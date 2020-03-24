@@ -6,7 +6,7 @@ In this project, the student builds a Tic Tac Toe game. The main goal is to put 
 
 Build a tic-tac-toe game on the command line where two human players can play against each other and the board is displayed in between turns.
 
-more about the specifications  [Wikipedia]https://en.wikipedia.org/wiki/Tic-tac-toe
+more about the specifications  [Wikipedia](https://en.wikipedia.org/wiki/Tic-tac-toe)
 
 ## Link to assignment
 
