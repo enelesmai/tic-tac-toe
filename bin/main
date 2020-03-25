@@ -1,2 +1,11 @@
 #!/usr/bin/env ruby
+require './lib/player'
+
 puts "Hello World!"
+py1 = Player.new("Raul")
+p py1.get_name()
+
+
+
+
+
