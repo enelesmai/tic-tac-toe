@@ -8,20 +8,55 @@ board = [
   7, 8, 9
 ]
 
-puts " #{board[0]} | #{board[1]} | #{board[2]} "
-puts '---+---+---'
-puts " #{board[3]} | #{board[4]} | #{board[5]} "
-puts '---+---+---'
-puts " #{board[6]} | #{board[7]} | #{board[8]} "
-puts "\n"
+def display_board
+	puts " #{board[0]} | #{board[1]} | #{board[2]} "
+	puts '---+---+---'
+	puts " #{board[3]} | #{board[4]} | #{board[5]} "
+	puts '---+---+---'
+	puts " #{board[6]} | #{board[7]} | #{board[8]} "
+	puts "\n"
+end
 
+
+# Ask for a position on the board
+def ask_for_position(hash_list,player)
+	x = false
+		until x==true
+			print "Player '#{player}' please choose a position (from 1 to 9): "
+			position = gets.chomp.to_i
+			
+			if position.is_a? (Integer)
+				if position > 0 && position < 10 
+					if  hash_list.fetch(position)==false
+						x=true
+						hash_list[position]=true
+					else
+						puts "The position is taked, choose another position"	
+					end			
+				else
+					puts "Wrong position, choose a position between 1 to 9"
+				end
+			else
+				puts "Wrong position, choose a position between 1 to 9"
+			end	
+		end	
+		return hash_list
+end
+
+list_of_players = {}
 # Ask for player 1 name:
 print 'Please enter a name for player 1 (X): '
 player1 = gets.chomp
-
+list_of_players [:player1] = 'X'
 # Ask for player 2 name:
 print 'Please enter a name for player 2 (O): '
 player2 = gets.chomp
+list_of_players [:player2] = 'O'
+
+list_of_positions = {}
+1.upto(9) do |x|
+	list_of_positions[x] = false
+end
 
 # Start Game
 ready = false
@@ -31,16 +66,20 @@ until ready
   ready = str_ready.upcase == 'Y'
 end
 
-# Ask for a position on the board
-print "#{player1} choose a position: "
-position = gets.chomp
+r=1
+while r<=9
+	current_player= r.even? ? player1 : player2
+	list_of_positions= ask_for_position(list_of_positions,current_player)	
+	r+=1
+end
 
+puts list_of_positions
 # Update the board
-puts "Now, your move '#{position}' is displayed on the board"
+#puts "Now, your move '#{position}' is displayed on the board"
 
 # Check if there is a winner or if the game is ended
-winner = player1
-puts "The winner is #{winner}!!"
+#winner = player1
+#puts "The winner is #{winner}!!"
 
 # When ended ask if player wnats to start a new game
 print 'Do you want to continue? (Y/N): '
