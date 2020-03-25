@@ -39,6 +39,8 @@ position = gets.chomp
 puts "Now, your move is displayed on the board"
 
 # Check if there is a winner or if the game is ended
+winner = player1
+puts "The winner is #{winner}!!"
 
 # When ended ask if player wnats to start a new game
 print "Do you want to continue? (Y/N): "
