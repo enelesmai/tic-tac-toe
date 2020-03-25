@@ -1,76 +1,71 @@
 #!/usr/bin/env ruby
 puts 'Welcome to tic-tac-toe!'
 
-# Display board
-board = [
-  1, 2, 3,
-  4, 5, 6,
-  7, 8, 9
-]
-
 def display_board
-	puts " #{board[0]} | #{board[1]} | #{board[2]} "
-	puts '---+---+---'
-	puts " #{board[3]} | #{board[4]} | #{board[5]} "
-	puts '---+---+---'
-	puts " #{board[6]} | #{board[7]} | #{board[8]} "
-	puts "\n"
+  puts ' 1 | 2 | 3 '
+  puts '---+---+---'
+  puts ' 4 | 5 | 6 '
+  puts '---+---+---'
+  puts ' 7 | 8 | 9 '
+  puts "\n"
 end
 
+# rubocop:disable Metrics/MethodLength
+# rubocop:disable Metrics/PerceivedComplexity
+# rubocop:disable Metrics/BlockNesting
+def ask_for_position(hash_list, player)
+  x = false
+  until x == true
+    puts display_board
+    print "Player '#{player}' please choose a position (from 1 to 9): "
+    position = gets.chomp.to_i
 
-# Ask for a position on the board
-def ask_for_position(hash_list,player)
-	x = false
-		until x==true
-			print "Player '#{player}' please choose a position (from 1 to 9): "
-			position = gets.chomp.to_i
-			
-			if position.is_a? (Integer)
-				if position > 0 && position < 10 
-					if  hash_list.fetch(position)==false
-						x=true
-						hash_list[position]=true
-					else
-						puts "The position is taked, choose another position"	
-					end			
-				else
-					puts "Wrong position, choose a position between 1 to 9"
-				end
-			else
-				puts "Wrong position, choose a position between 1 to 9"
-			end	
-		end	
-		return hash_list
+    if position.is_a? Integer
+      if position.positive? && position < 10
+        if hash_list.fetch(position) == false
+          x = true
+          hash_list[position] = true
+        else
+          puts 'The position is taked, choose another position'
+        end
+      else
+        puts 'Wrong position, choose a position between 1 to 9'
+      end
+    else
+      puts 'Wrong position, choose a position between 1 to 9'
+    end
+  end
+  hash_list
 end
+# rubocop:enable Metrics/MethodLength
+# rubocop:enable Metrics/PerceivedComplexity
+# rubocop:enable Metrics/BlockNesting
 
-# Check if there is a winner
-def is_winner?
+def winner?
   prng = Random.new
-  return prng.rand(10).even?
+  prng.rand(10).even?
 end
 
-# Check if there is a draw
-def is_draw?
+def draw?
   prng = Random.new
-  return prng.rand(10).even?
+  prng.rand(10).even?
 end
 
 list_of_players = {}
-# Ask for player 1 name:
+
 print 'Please enter a name for player 1 (X): '
 player1 = gets.chomp
 list_of_players [:player1] = 'X'
-# Ask for player 2 name:
+
 print 'Please enter a name for player 2 (O): '
 player2 = gets.chomp
 list_of_players [:player2] = 'O'
 
 list_of_positions = {}
 1.upto(9) do |x|
-	list_of_positions[x] = false
+  list_of_positions[x] = false
 end
 
-# Start Game
 ready = false
 until ready
   print "#{player1} and #{player2} are you ready? (Y/N): "
@@ -78,30 +73,24 @@ until ready
   ready = str_ready.upcase == 'Y'
 end
 
-r=1
-winner = false;
-draw = false;
-while r<=9 
-	current_player= r.even? ? player1 : player2
-  list_of_positions= ask_for_position(list_of_positions,current_player)	
-  if(r>1)
-		winner = is_winner?
-		draw = is_draw?  if winner == false
-		break if winner == true		
-		break if draw == true
+r = 1
+while r <= 9
+  current_player = r.even? ? player1 : player2
+  list_of_positions = ask_for_position(list_of_positions, current_player)
+  if r > 1
+    var_winner = winner?
+    var_draw = draw? if var_winner == false
+    break if var_winner == true
+    break if var_draw == true
   end
-	r+=1
+  r += 1
 end
 
 puts list_of_positions
 
-puts "The winner is #{current_player}!!" if winner == true 
-puts "It is a draw!" if draw == true
+puts "The winner is #{current_player}!!" if var_winner == true
+puts 'It is a draw!' if var_draw == true
 
-# Update the board
-#puts "Now, your move '#{position}' is displayed on the board"
-
-# When ended ask if player wnats to start a new game
 print 'Do you want to continue? (Y/N): '
 
-puts "bye amigo!!!"
+puts 'bye amigo!!!'
