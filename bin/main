@@ -1,4 +1,7 @@
 #!/usr/bin/env ruby
+require './lib/player'
+require './lib/player_list'
+
 puts 'Welcome to tic-tac-toe!'
 
 def display_board
@@ -51,15 +54,25 @@ def draw?
   prng.rand(10).even?
 end
 
-list_of_players = {}
 
-print 'Please enter a name for player 1 (X): '
-player1 = gets.chomp
-list_of_players [:player1] = 'X'
 
-print 'Please enter a name for player 2 (O): '
-player2 = gets.chomp
-list_of_players [:player2] = 'O'
+player1 = Player.new
+while player1.validate_name==false
+	print 'Please enter a name for player 1 (X): '	
+	player1.name = gets.chomp 
+	player1.symbol = 'X'
+	list_of_players = PlayerList.new(player1) 
+end
+
+player2 = Player.new
+while player2.validate_name==false
+	print 'Please enter a name for player 2 (O): '	
+	player2.name = gets.chomp 
+	player2.symbol = 'O'
+	list_of_players.add_player(player2) 
+end
+
+list_of_players.list_players
 
 list_of_positions = {}
 1.upto(9) do |x|
@@ -68,14 +81,14 @@ end
 
 ready = false
 until ready
-  print "#{player1} and #{player2} are you ready? (Y/N): "
+  print "#{player1.name} and #{player2.name} are you ready? (Y/N): "
   str_ready = gets.chomp
   ready = str_ready.upcase == 'Y'
 end
 
 r = 1
 while r <= 9
-  current_player = r.even? ? player1 : player2
+  current_player = r.even? ? player1.name : player2.name
   list_of_positions = ask_for_position(list_of_positions, current_player)
   if r > 1
     var_winner = winner?
