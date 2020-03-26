@@ -5,7 +5,7 @@ class Game
 
   def start
     @board = Board.new
-    # @board.display_board
+    @board.display_board
   end
 
   # rubocop:disable Metrics/PerceivedComplexity
@@ -13,7 +13,6 @@ class Game
   def ask_for_position(player)
     x = false
     until x == true
-      @board.display_board
       print "Player '#{player.name}' please choose a position (from 1 to 9): "
       position = gets.chomp.to_i
 
@@ -21,9 +20,10 @@ class Game
         if position.positive? && position < 10
           if @board.position_taken(position) == false
             x = true
-            @board.update_board(position, player.symbol)
+			@board.update_board(position, player.symbol)
+			@board.display_board
           else
-            puts 'The position is taked, choose another position'
+            puts 'The position is taken, choose another position'
           end
         else
           puts 'Wrong position, choose a position between 1 to 9'
@@ -37,13 +37,13 @@ class Game
   # rubocop:enable Metrics/PerceivedComplexity
   # rubocop:enable Metrics/BlockNesting
 
-  def winner?
+  def winner?(symbol)
+    return @board.check_line_of_symbols(symbol)
+  end
+
+  def draw?(symbol)
     prng = Random.new
     prng.rand(10).even?
   end
 
-  def draw?
-    prng = Random.new
-    prng.rand(10).even?
-  end
 end

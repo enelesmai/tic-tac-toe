@@ -1,7 +1,7 @@
 require './lib/coordinate'
 class Board
   def initialize()
-    @board_status = [
+    @array = [
       [1, 2, 3],
       [4, 5, 6],
       [7, 8, 9]
@@ -9,18 +9,18 @@ class Board
   end
 
   def display_board
-    @board_status.each do |x|
+    @array.each do |x|
       puts x.inspect
     end
   end
 
   def update_board(position, symbol)
-    coordinate = get_coordinate(position)
-    @board_status[coordinate.coor_x][coordinate.coor_y] = symbol
+    coordinate = get_coord(position)
+    @array[coordinate.coor_x][coordinate.coor_y] = symbol
   end
 
   # rubocop:disable Metrics/CyclomaticComplexity
-  def get_coordinate(position)
+  def get_coord(position)
     case position
     when 1 then Coordinate.new(0, 0)
     when 2 then Coordinate.new(0, 1)
@@ -36,11 +36,27 @@ class Board
 
   # rubocop:enable Metrics/CyclomaticComplexity
   def position_taken(position)
-    coordinate = get_coordinate(position)
-    if @board_status[coordinate.coor_x][coordinate.coor_y].is_a? Integer
+    coordinate = get_coord(position)
+    if @array[coordinate.coor_x][coordinate.coor_y].is_a? Integer
       false
     else
       true
     end
   end
+
+  def check_line_of_symbols(symbol)
+	valid = false
+	if @array[get_coord(1).coor_x][get_coord(1).coor_y] == symbol && @array[get_coord(2).coor_x][get_coord(2).coor_y] == symbol && @array[get_coord(3).coor_x][get_coord(3).coor_y] == symbol ||
+		@array[get_coord(4).coor_x][get_coord(4).coor_y] == symbol && @array[get_coord(5).coor_x][get_coord(5).coor_y] == symbol && @array[get_coord(6).coor_x][get_coord(6).coor_y] == symbol ||
+		@array[get_coord(7).coor_x][get_coord(7).coor_y] == symbol && @array[get_coord(8).coor_x][get_coord(8).coor_y] == symbol && @array[get_coord(9).coor_x][get_coord(9).coor_y] == symbol ||
+		@array[get_coord(1).coor_x][get_coord(1).coor_y] == symbol && @array[get_coord(4).coor_x][get_coord(4).coor_y] == symbol && @array[get_coord(7).coor_x][get_coord(7).coor_y] == symbol ||
+		@array[get_coord(2).coor_x][get_coord(2).coor_y] == symbol && @array[get_coord(5).coor_x][get_coord(5).coor_y] == symbol && @array[get_coord(8).coor_x][get_coord(8).coor_y] == symbol ||
+		@array[get_coord(3).coor_x][get_coord(3).coor_y] == symbol && @array[get_coord(6).coor_x][get_coord(6).coor_y] == symbol && @array[get_coord(9).coor_x][get_coord(9).coor_y] == symbol ||
+		@array[get_coord(1).coor_x][get_coord(1).coor_y] == symbol && @array[get_coord(5).coor_x][get_coord(5).coor_y] == symbol && @array[get_coord(9).coor_x][get_coord(9).coor_y] == symbol ||
+		@array[get_coord(7).coor_x][get_coord(7).coor_y] == symbol && @array[get_coord(5).coor_x][get_coord(5).coor_y] == symbol && @array[get_coord(3).coor_x][get_coord(3).coor_y] == symbol
+		valid = true
+	end
+	valid
+  end
+
 end
