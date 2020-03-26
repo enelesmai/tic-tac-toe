@@ -7,24 +7,24 @@ puts 'Welcome to tic-tac-toe!'
 
 # setup players
 player1 = Player.new
-while player1.validate_name==false
-	print 'Please enter a name for player 1 (X): '	
-	player1.name = gets.chomp 
-	player1.symbol = 'X'
-	list_of_players = PlayerList.new(player1) 
+while player1.validate_name == false
+  print 'Please enter a name for player 1 (X): '
+  player1.name = gets.chomp
+  player1.symbol = 'X'
+  list_of_players = PlayerList.new(player1)
 end
 
 player2 = Player.new
-while player2.validate_name==false
-	print 'Please enter a name for player 2 (O): '	
-	player2.name = gets.chomp 
-    player2.symbol = 'O'
-    if list_of_players.validate_unique_name(player2)
-        list_of_players.add_player(player2) 
-    else
-        puts "The player '#{player2.name}' already exists."
-        player2.name = ""
-    end
+while player2.validate_name == false
+  print 'Please enter a name for player 2 (O): '
+  player2.name = gets.chomp
+  player2.symbol = 'O'
+  if list_of_players.validate_unique_name(player2)
+    list_of_players.add_player(player2)
+  else
+    puts "The player '#{player2.name}' already exists."
+    player2.name = ''
+  end
 end
 
 list_of_players.list_players
@@ -40,16 +40,11 @@ end
 game = Game.new
 game.start
 
-list_of_positions = {}
-1.upto(9) do |x|
-  list_of_positions[x] = false
-end
-
 r = 1
 while r <= 9
-  current_player = r.even? ? player1.name : player2.name
-  list_of_positions = game.ask_for_position(list_of_positions, current_player)
-  if r > 1
+  current_player = r.even? ? player1 : player2
+  game.ask_for_position(current_player)
+  if r > 5
     var_winner = game.winner?
     var_draw = game.draw? if var_winner == false
     break if var_winner == true
@@ -58,9 +53,7 @@ while r <= 9
   r += 1
 end
 
-puts list_of_positions
-
-puts "The winner is #{current_player}!!" if var_winner == true
+puts "The winner is #{current_player.name}!!" if var_winner == true
 puts 'It is a draw!' if var_draw == true
 
 print 'Do you want to continue? (Y/N): '
