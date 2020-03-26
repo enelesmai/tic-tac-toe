@@ -13,4 +13,8 @@ class PlayerList
 	def list_players		
 		return @@players_list.each{|k,v| p "Player =>#{v.name} Symbol =>#{v.symbol}"  }
 	end
+
+	def validate_unique_name(player)
+		@@players_list["X"].name != player.name
+	end
 end

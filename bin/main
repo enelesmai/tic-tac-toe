@@ -54,7 +54,7 @@ def draw?
   prng.rand(10).even?
 end
 
-
+# start game
 
 player1 = Player.new
 while player1.validate_name==false
@@ -68,8 +68,13 @@ player2 = Player.new
 while player2.validate_name==false
 	print 'Please enter a name for player 2 (O): '	
 	player2.name = gets.chomp 
-	player2.symbol = 'O'
-	list_of_players.add_player(player2) 
+    player2.symbol = 'O'
+    if list_of_players.validate_unique_name(player2)
+        list_of_players.add_player(player2) 
+    else
+        puts "The player '#{player2.name}' already exists."
+        player2.name = ""
+    end
 end
 
 list_of_players.list_players
