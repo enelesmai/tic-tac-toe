@@ -5,7 +5,17 @@ class Board
       [1, 2, 3],
       [4, 5, 6],
       [7, 8, 9]
-    ]
+	]
+	@valid_lines = [
+		[1,2,3],
+		[4,5,6],
+		[7,8,9],
+		[1,4,7],
+		[2,5,8],
+		[3,6,9],
+		[1,5,9],
+		[7,5,3]
+	]
   end
 
   def display_board
@@ -46,15 +56,16 @@ class Board
 
   def check_line_of_symbols(symbol)
 	valid = false
-	if @array[get_coord(1).coor_x][get_coord(1).coor_y] == symbol && @array[get_coord(2).coor_x][get_coord(2).coor_y] == symbol && @array[get_coord(3).coor_x][get_coord(3).coor_y] == symbol ||
-		@array[get_coord(4).coor_x][get_coord(4).coor_y] == symbol && @array[get_coord(5).coor_x][get_coord(5).coor_y] == symbol && @array[get_coord(6).coor_x][get_coord(6).coor_y] == symbol ||
-		@array[get_coord(7).coor_x][get_coord(7).coor_y] == symbol && @array[get_coord(8).coor_x][get_coord(8).coor_y] == symbol && @array[get_coord(9).coor_x][get_coord(9).coor_y] == symbol ||
-		@array[get_coord(1).coor_x][get_coord(1).coor_y] == symbol && @array[get_coord(4).coor_x][get_coord(4).coor_y] == symbol && @array[get_coord(7).coor_x][get_coord(7).coor_y] == symbol ||
-		@array[get_coord(2).coor_x][get_coord(2).coor_y] == symbol && @array[get_coord(5).coor_x][get_coord(5).coor_y] == symbol && @array[get_coord(8).coor_x][get_coord(8).coor_y] == symbol ||
-		@array[get_coord(3).coor_x][get_coord(3).coor_y] == symbol && @array[get_coord(6).coor_x][get_coord(6).coor_y] == symbol && @array[get_coord(9).coor_x][get_coord(9).coor_y] == symbol ||
-		@array[get_coord(1).coor_x][get_coord(1).coor_y] == symbol && @array[get_coord(5).coor_x][get_coord(5).coor_y] == symbol && @array[get_coord(9).coor_x][get_coord(9).coor_y] == symbol ||
-		@array[get_coord(7).coor_x][get_coord(7).coor_y] == symbol && @array[get_coord(5).coor_x][get_coord(5).coor_y] == symbol && @array[get_coord(3).coor_x][get_coord(3).coor_y] == symbol
-		valid = true
+	@valid_lines.each do |line|
+		array_values = []
+		line.each do |position|
+			coordinate = get_coord(position)
+			array_values.push(@array[coordinate.coor_x][coordinate.coor_y])
+		end	
+		if array_values.all?(symbol)
+			valid = true
+			break
+		end
 	end
 	valid
   end
