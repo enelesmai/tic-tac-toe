@@ -1,61 +1,11 @@
 #!/usr/bin/env ruby
 require './lib/player'
 require './lib/player_list'
+require './lib/game'
 
 puts 'Welcome to tic-tac-toe!'
 
-def display_board
-  puts ' 1 | 2 | 3 '
-  puts '---+---+---'
-  puts ' 4 | 5 | 6 '
-  puts '---+---+---'
-  puts ' 7 | 8 | 9 '
-  puts "\n"
-end
-
-# rubocop:disable Metrics/MethodLength
-# rubocop:disable Metrics/PerceivedComplexity
-# rubocop:disable Metrics/BlockNesting
-def ask_for_position(hash_list, player)
-  x = false
-  until x == true
-    puts display_board
-    print "Player '#{player}' please choose a position (from 1 to 9): "
-    position = gets.chomp.to_i
-
-    if position.is_a? Integer
-      if position.positive? && position < 10
-        if hash_list.fetch(position) == false
-          x = true
-          hash_list[position] = true
-        else
-          puts 'The position is taked, choose another position'
-        end
-      else
-        puts 'Wrong position, choose a position between 1 to 9'
-      end
-    else
-      puts 'Wrong position, choose a position between 1 to 9'
-    end
-  end
-  hash_list
-end
-# rubocop:enable Metrics/MethodLength
-# rubocop:enable Metrics/PerceivedComplexity
-# rubocop:enable Metrics/BlockNesting
-
-def winner?
-  prng = Random.new
-  prng.rand(10).even?
-end
-
-def draw?
-  prng = Random.new
-  prng.rand(10).even?
-end
-
-# start game
-
+# setup players
 player1 = Player.new
 while player1.validate_name==false
 	print 'Please enter a name for player 1 (X): '	
@@ -79,11 +29,6 @@ end
 
 list_of_players.list_players
 
-list_of_positions = {}
-1.upto(9) do |x|
-  list_of_positions[x] = false
-end
-
 ready = false
 until ready
   print "#{player1.name} and #{player2.name} are you ready? (Y/N): "
@@ -91,13 +36,22 @@ until ready
   ready = str_ready.upcase == 'Y'
 end
 
+# board
+game = Game.new
+game.start
+
+list_of_positions = {}
+1.upto(9) do |x|
+  list_of_positions[x] = false
+end
+
 r = 1
 while r <= 9
   current_player = r.even? ? player1.name : player2.name
-  list_of_positions = ask_for_position(list_of_positions, current_player)
+  list_of_positions = game.ask_for_position(list_of_positions, current_player)
   if r > 1
-    var_winner = winner?
-    var_draw = draw? if var_winner == false
+    var_winner = game.winner?
+    var_draw = game.draw? if var_winner == false
     break if var_winner == true
     break if var_draw == true
   end
