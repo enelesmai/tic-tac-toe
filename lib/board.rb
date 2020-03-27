@@ -5,22 +5,28 @@ class Board
       [1, 2, 3],
       [4, 5, 6],
       [7, 8, 9]
-	]
-	@valid_lines = [
-		[1,2,3],
-		[4,5,6],
-		[7,8,9],
-		[1,4,7],
-		[2,5,8],
-		[3,6,9],
-		[1,5,9],
-		[7,5,3]
-	]
+    ]
+    @valid_lines = [
+      [1, 2, 3],
+      [4, 5, 6],
+      [7, 8, 9],
+      [1, 4, 7],
+      [2, 5, 8],
+      [3, 6, 9],
+      [1, 5, 9],
+      [7, 5, 3]
+    ]
   end
 
-  def display_board
-    @array.each do |x|
-      puts x.inspect
+	def display_board
+		puts ''
+		@array.each do |x|
+				print '|'
+				x.each do |y|
+					print "  #{y}  " 
+				end
+				print '|'
+				puts ''
     end
   end
 
@@ -55,23 +61,22 @@ class Board
   end
 
   def check_line_of_symbols(symbol)
-	valid = false
-	@valid_lines.each do |line|
-		array_values = []
-		line.each do |position|
-			coordinate = get_coord(position)
-			array_values.push(@array[coordinate.coor_x][coordinate.coor_y])
-		end	
-		if array_values.all?(symbol)
-			valid = true
-			break
-		end
-	end
-	valid
-	end
-	
-	def check_line_draw		
-		return !check_line_of_symbols(@array[0][0]) 
-	end
+    valid = false
+    @valid_lines.each do |line|
+      array_values = []
+      line.each do |position|
+        coordinate = get_coord(position)
+        array_values.push(@array[coordinate.coor_x][coordinate.coor_y])
+      end
+      if array_values.all?(symbol)
+        valid = true
+        break
+      end
+    end
+    valid
+  end
 
+  def check_line_draw
+    !check_line_of_symbols(@array[0][0])
+  end
 end

@@ -17,5 +17,26 @@ class Player
         true
       end
     end
-  end
+	end
+	
+	def validate_symbol
+    if symbol.nil? || symbol.empty?
+      false
+    else
+      temp_param = symbol.lstrip
+      if temp_param.empty?
+        false
+			else				
+				if symbol=='X' || symbol=='O'
+					true
+				else 
+					false
+				end 
+      end
+    end
+	end
+	
+	def show_info_player
+		return "symbol: #{symbol}    Name: #{name.upcase}"
+	end
 end

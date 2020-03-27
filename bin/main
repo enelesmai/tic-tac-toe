@@ -3,37 +3,51 @@ require './lib/player'
 require './lib/player_list'
 require './lib/game'
 
-puts 'Welcome to tic-tac-toe!'
+puts 'Welcome to TIC-TAC-TOE!'
 
 # setup players
 player1 = Player.new
-while player1.validate_name == false
-  print 'Please enter a name for player 1 (X): '
-  player1.name = gets.chomp
-  player1.symbol = 'X'
+while player1.validate_name == false 
+	print 'Please enter a name for player 1: '
+	player1.name = gets.chomp
+	
+	while  player1.validate_symbol == false
+		print "Choose between 'X' or 'O': "
+		player1.symbol = gets.chomp.to_s.upcase  
+	end
+
   list_of_players = PlayerList.new(player1)
 end
 
 player2 = Player.new
-while player2.validate_name == false
-  print 'Please enter a name for player 2 (O): '
-  player2.name = gets.chomp
-  player2.symbol = 'O'
-  if list_of_players.validate_unique_name(player2)
-    list_of_players.add_player(player2)
-  else
-    puts "The player '#{player2.name}' already exists."
-    player2.name = ''
-  end
-end
+add_valid = false
+
+while add_valid==false do	
+	while player2.validate_name == false 
+		print 'Please enter a name for player 2: '
+		player2.name = gets.chomp	
+		player2.symbol = player1.symbol=='X' ? 'O' : 'X' 		
+	end
+	
+  if list_of_players.add_player(player2)==false
+		add_valid = false		
+		player2.name=""
+		puts 'already exists'		
+	else 
+		add_valid = true
+	end
+end 
 
 play = true
 while play
-  list_of_players.list_players
-
+  #list_of_players.list_players
+	puts "--------------------------------------"
+	puts "#{player1.show_info_player}"
+	puts "#{player2.show_info_player}"
+	puts "--------------------------------------"
   ready = false
   until ready
-    print "#{player1.name} and #{player2.name} are you ready? (Y/N): "
+    print "#{player1.name.upcase} and #{player2.name.upcase} are you ready? (Y/N): "
     str_ready = gets.chomp
     ready = str_ready.upcase == 'Y'
   end
@@ -47,31 +61,37 @@ while play
     current_player = r.even? ? player2 : player1
 
     x = false
-    until x == true
-      print "Player '#{current_player.name}' please choose a position (from 1 to 9): "
-      position = gets.chomp.to_i
+		until x == true
+			puts "-----------------------------"
+			puts "#{player1.show_info_player}"
+			puts "#{player2.show_info_player}"
+			puts "-----------------------------"
+      print "\n Player '#{current_player.name.upcase}' please choose a position (from 1 to 9): "
+			position = gets.chomp.to_i
+			
       x = game.validate_position(position, current_player)
-      puts Game.get_message if !x
+      puts "\n"+Game.get_message.upcase unless x
     end
-    
+
     var_winner = game.winner?(current_player.symbol)
     break if var_winner == true
+
     var_draw = true if !var_winner && r > 8
     r += 1
   end
 
-  puts "The winner is #{current_player.name}!!" if var_winner == true
+  puts "\n The winner is #{current_player.name.upcase}!!!!! " if var_winner == true
   puts 'It is a draw!' if var_draw == true
 
   answer = false
   until answer
-    print 'Do you want to continue playing? (Y/N): '
+    print "\n Do you want to continue playing? (Y/N): "
     str_answer = gets.chomp
     answer = str_answer.upcase == 'Y' || str_answer.upcase == 'N'
   end
 
   play = str_answer.upcase == 'Y'
-   
+
 end
 
-puts 'bye amigo!!!' if !play
+puts "\n bye amigo!!!" unless play
