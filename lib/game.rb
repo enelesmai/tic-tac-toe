@@ -42,8 +42,7 @@ class Game
   end
 
   def draw?(symbol)
-    prng = Random.new
-    prng.rand(10).even?
+    return @board.check_line_draw
   end
 
 end

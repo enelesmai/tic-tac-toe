@@ -68,6 +68,10 @@ class Board
 		end
 	end
 	valid
-  end
+	end
+	
+	def check_line_draw		
+		return false if check_line_of_symbols(@array[0][0]) 
+	end
 
 end
