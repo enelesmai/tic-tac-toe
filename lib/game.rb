@@ -1,7 +1,7 @@
 require './lib/board'
 
 class Game
-  @@message
+  @message = ''
   def initialize; end
 
   def start
@@ -16,23 +16,23 @@ class Game
       if position.positive? && position < 10
         if @board.position_taken(position) == false
           x = true
-          @board.update_board(position, player.symbol)          
+          @board.update_board(position, player.symbol)
         else
-          @@message = 'The position is taken, choose another position'
+          @message = 'The position is taken, choose another position'
         end
       else
-        @@message = 'Wrong position, choose a position between 1 to 9'
+        @message = 'Wrong position, choose a position between 1 to 9'
       end
     else
-      @@message = 'Wrong position, choose a position between 1 to 9'
-		end
-		@board.display_board
+      @message = 'Wrong position, choose a position between 1 to 9'
+    end
+    @board.display_board
     x
   end
   # rubocop:enable Metrics/PerceivedComplexity
 
-  def self.get_message
-    @@message
+  def self.return_message
+    @message
   end
 
   def winner?(symbol)
@@ -41,9 +41,7 @@ class Game
 
   def draw?(_symbol)
     @board.check_line_draw
-	end
-	
-	def randon_symbol 
+  end
 
-	end
+  def randon_symbol; end
 end

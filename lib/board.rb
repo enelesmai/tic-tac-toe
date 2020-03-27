@@ -18,15 +18,15 @@ class Board
     ]
   end
 
-	def display_board
-		puts ''
-		@array.each do |x|
-				print '|'
-				x.each do |y|
-					print "  #{y}  " 
-				end
-				print '|'
-				puts ''
+  def display_board
+    puts ''
+    @array.each do |x|
+      print '|'
+      x.each do |y|
+        print "  #{y}  "
+      end
+      print '|'
+      puts ''
     end
   end
 

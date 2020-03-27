@@ -7,44 +7,45 @@ puts 'Welcome to TIC-TAC-TOE!'
 
 # setup players
 player1 = Player.new
-while player1.validate_name == false 
-	print 'Please enter a name for player 1: '
-	player1.name = gets.chomp
-	
-	while  player1.validate_symbol == false
-		print "Choose between 'X' or 'O': "
-		player1.symbol = gets.chomp.to_s.upcase  
-	end
+while player1.validate_name == false
+  print 'Please enter a name for player 1: '
+  player1.name = gets.chomp
 
-  list_of_players = PlayerList.new(player1)
+  while player1.validate_symbol == false
+    print "Choose between 'X' or 'O': "
+    player1.symbol = gets.chomp.to_s.upcase
+  end
+
+  list_of_players = PlayerList.new
+  list_of_players.add_player(player1)
 end
 
 player2 = Player.new
 add_valid = false
 
-while add_valid==false do	
-	while player2.validate_name == false 
-		print 'Please enter a name for player 2: '
-		player2.name = gets.chomp	
-		player2.symbol = player1.symbol=='X' ? 'O' : 'X' 		
-	end
-	
-  if list_of_players.add_player(player2)==false
-		add_valid = false		
-		player2.name=""
-		puts 'already exists'		
-	else 
-		add_valid = true
-	end
-end 
+while add_valid == false
+  while player2.validate_name == false
+    print 'Please enter a name for player 2: '
+    player2.name = gets.chomp
+    player2.symbol = player1.symbol == 'X' ? 'O' : 'X'
+  end
+
+  if list_of_players.add_player(player2) == false
+    add_valid = false
+    player2.name = ''
+    puts 'player already exists. choose another name'
+  else
+    add_valid = true
+  end
+end
 
 play = true
 while play
-  #list_of_players.list_players
-	puts "--------------------------------------"
-	puts "#{player1.show_info_player}"
-	puts "#{player2.show_info_player}"
-	puts "--------------------------------------"
+  # list_of_players.list_players
+  puts '--------------------------------------'
+  puts player1.show_info_player.to_s
+  puts player2.show_info_player.to_s
+  puts '--------------------------------------'
   ready = false
   until ready
     print "#{player1.name.upcase} and #{player2.name.upcase} are you ready? (Y/N): "
@@ -61,16 +62,16 @@ while play
     current_player = r.even? ? player2 : player1
 
     x = false
-		until x == true
-			puts "-----------------------------"
-			puts "#{player1.show_info_player}"
-			puts "#{player2.show_info_player}"
-			puts "-----------------------------"
+    until x == true
+      puts '-----------------------------'
+      puts player1.show_info_player.to_s
+      puts player2.show_info_player.to_s
+      puts '-----------------------------'
       print "\n Player '#{current_player.name.upcase}' please choose a position (from 1 to 9): "
-			position = gets.chomp.to_i
-			
+      position = gets.chomp.to_i
+
       x = game.validate_position(position, current_player)
-      puts "\n"+Game.get_message.upcase unless x
+      puts "\n" + Game.return_message unless x
     end
 
     var_winner = game.winner?(current_player.symbol)
