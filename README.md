@@ -12,6 +12,57 @@ more about the specifications  [Wikipedia](https://en.wikipedia.org/wiki/Tic-tac
 
 the assignment can be found  [here](https://www.theodinproject.com/courses/ruby-programming/lessons/oop).
 
+## Usage
+
+To run the game you should add execute permissions to the main file. [Here](https://commandercoriander.net/blog/2013/02/16/making-a-ruby-script-executable/) you can find more information. 
+
+    chmod 755 main.rb
+
+After that you can start the game by running
+
+    ./bin/main.rb
+
+## Instructions
+
+Tic Tac Toe is a game for two players who take turns to mark spaces in a 3x3 grid board, using the symbols 'X' and 'O'.
+
+In this game each cell of the board is represented by a position(number) from 1 to 9, as shown below:
+
+    |  1    2    3  |
+    |  4    5    6  |
+    |  7    8    9  |
+
+When starting the game, it is going to ask you for the names of the players. For example:
+    
+    Please enter a name for player 1:
+
+And after the name of the first player, it is going to ask you for the symbol:
+    
+    Choose between 'X' or 'O':
+
+Then it will show you the names of the two players and the symbol for each one. And you can start playing!
+    
+    --------------------------------------
+    symbol: X    Name: ARIEL CAMUS
+    symbol: O    Name: WILLOW
+    --------------------------------------
+    ARIEL CAMUS and WILLOW are you ready? (Y/N):
+
+The game will ask for a position representing the current player's move on the board.
+    
+    Player 'ARIEL CAMUS' please choose a position (from 1 to 9): 
+
+Unless there is a winner or the board gets full (which means it is a draw), the game will ask to the next player for choosing another position.
+
+A winner will be found when a player gets a single line (horizontal, vertical or diagonal) with the same symbol.
+
+For example, the following board shows an horizontal line winning move for the player X:
+
+    |  1    2    O  |
+    |  X    X    X  |
+    |  7    O    9  |
+
+
 ## Built With
 
 Concepts used on this project
