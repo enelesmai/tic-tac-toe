@@ -56,7 +56,10 @@ while play
   puts game.return_current_board
 
   r = 1
+
   while r <= 9
+    var_draw = false
+    var_winner = false
     current_player = r.even? ? player2 : player1
 
     x = false
@@ -81,7 +84,7 @@ while play
   end
 
   puts "\n The winner is #{current_player.name.upcase}!!!!! " if var_winner == true
-  puts 'It is a draw!' if var_draw == true
+  puts "\n It is a draw!" if var_draw == true
 
   answer = false
   until answer
