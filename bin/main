@@ -27,32 +27,43 @@ while player2.validate_name == false
   end
 end
 
-list_of_players.list_players
+play = true
+while play
+  list_of_players.list_players
 
-ready = false
-until ready
-  print "#{player1.name} and #{player2.name} are you ready? (Y/N): "
-  str_ready = gets.chomp
-  ready = str_ready.upcase == 'Y'
+  ready = false
+  until ready
+    print "#{player1.name} and #{player2.name} are you ready? (Y/N): "
+    str_ready = gets.chomp
+    ready = str_ready.upcase == 'Y'
+  end
+
+  # board
+  game = Game.new
+  game.start
+
+  r = 1
+  while r <= 9
+    current_player = r.even? ? player2 : player1
+    game.ask_for_position(current_player)
+    var_winner = game.winner?(current_player.symbol)
+    break if var_winner == true
+    var_draw = true if !var_winner && r > 7
+    r += 1
+  end
+
+  puts "The winner is #{current_player.name}!!" if var_winner == true
+  puts 'It is a draw!' if var_draw == true
+
+  answer = false
+  until answer
+    print 'Do you want to continue playing? (Y/N): '
+    str_answer = gets.chomp
+    answer = str_answer.upcase == 'Y' || str_answer.upcase == 'N'
+  end
+
+  play = str_answer.upcase == 'Y'
+   
 end
 
-# board
-game = Game.new
-game.start
-
-r = 1
-while r <= 9
-  current_player = r.even? ? player2 : player1
-  game.ask_for_position(current_player)
-  var_winner = game.winner?(current_player.symbol)
-  break if var_winner == true
-  var_draw = true if !var_winner && r > 7
-  r += 1
-end
-
-puts "The winner is #{current_player.name}!!" if var_winner == true
-puts 'It is a draw!' if var_draw == true
-
-print 'Do you want to continue? (Y/N): '
-
-puts 'bye amigo!!!'
+puts 'bye amigo!!!' if !play
