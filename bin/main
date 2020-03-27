@@ -71,7 +71,7 @@ while play
       position = gets.chomp.to_i
 
       x = game.validate_position(position, current_player)
-      puts "\n" + Game.return_message unless x
+      puts "\n #{game.return_message}"
     end
 
     var_winner = game.winner?(current_player.symbol)

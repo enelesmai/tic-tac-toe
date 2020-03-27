@@ -1,7 +1,7 @@
 require './lib/board'
 
 class Game
-  @message = ''
+  attr_reader :message
   def initialize; end
 
   def start
@@ -17,6 +17,7 @@ class Game
         if @board.position_taken(position) == false
           x = true
           @board.update_board(position, player.symbol)
+          @message = '¡Board updated!'
         else
           @message = 'The position is taken, choose another position'
         end
@@ -31,7 +32,7 @@ class Game
   end
   # rubocop:enable Metrics/PerceivedComplexity
 
-  def self.return_message
+  def return_message
     @message
   end
 
