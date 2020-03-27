@@ -45,9 +45,8 @@ while r <= 9
   current_player = r.even? ? player2 : player1
   game.ask_for_position(current_player)
   var_winner = game.winner?(current_player.symbol)
-  var_draw = game.draw?(current_player.symbol) if var_winner == false
   break if var_winner == true
-  break if var_draw == true
+  var_draw = true if !var_winner && r > 7
   r += 1
 end
 
