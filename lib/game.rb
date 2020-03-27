@@ -2,11 +2,12 @@ require './lib/board'
 
 class Game
   attr_reader :message
+  attr_reader :current_board
   def initialize; end
 
   def start
     @board = Board.new
-    @board.display_board
+    @current_board = @board.display_board
   end
 
   # rubocop:disable Metrics/PerceivedComplexity
@@ -27,13 +28,17 @@ class Game
     else
       @message = 'Wrong position, choose a position between 1 to 9'
     end
-    @board.display_board
+    @current_board = @board.display_board
     x
   end
   # rubocop:enable Metrics/PerceivedComplexity
 
   def return_message
     @message
+  end
+
+  def return_current_board
+    @current_board
   end
 
   def winner?(symbol)

@@ -1,5 +1,6 @@
 require './lib/coordinate'
 class Board
+  attr_reader :board_string
   def initialize()
     @array = [
       [1, 2, 3],
@@ -19,15 +20,16 @@ class Board
   end
 
   def display_board
-    puts ''
+    @board_string = "\n"
     @array.each do |x|
-      print '|'
+      @board_string += '|'
       x.each do |y|
-        print "  #{y}  "
+        @board_string += "  #{y}  "
       end
-      print '|'
-      puts ''
+      @board_string += '|'
+      @board_string += "\n"
     end
+    @board_string
   end
 
   def update_board(position, symbol)
