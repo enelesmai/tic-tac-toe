@@ -45,7 +45,15 @@ while play
   r = 1
   while r <= 9
     current_player = r.even? ? player2 : player1
-    game.ask_for_position(current_player)
+
+    x = false
+    until x == true
+      print "Player '#{current_player.name}' please choose a position (from 1 to 9): "
+      position = gets.chomp.to_i
+      x = game.validate_position(position, current_player)
+      puts Game.get_message if !x
+    end
+    
     var_winner = game.winner?(current_player.symbol)
     break if var_winner == true
     var_draw = true if !var_winner && r > 7
