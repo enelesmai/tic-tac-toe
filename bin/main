@@ -5,7 +5,6 @@ require './lib/game'
 
 puts 'Welcome to TIC-TAC-TOE!'
 
-# setup players
 player1 = Player.new
 while player1.validate_name == false
   print 'Please enter a name for player 1: '
@@ -41,7 +40,6 @@ end
 
 play = true
 while play
-  # list_of_players.list_players
   puts '--------------------------------------'
   puts player1.show_info_player.to_s
   puts player2.show_info_player.to_s
@@ -53,7 +51,6 @@ while play
     ready = str_ready.upcase == 'Y'
   end
 
-  # board
   game = Game.new
   game.start
 

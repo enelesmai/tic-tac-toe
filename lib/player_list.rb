@@ -2,9 +2,6 @@ require './lib/player'
 
 class PlayerList
   @players_list = Hash.new { 0 }
-  #  def initialize(player)
-  #    @players_list[player.name] = player
-  #  end
 
   def self.players_list
     @things
