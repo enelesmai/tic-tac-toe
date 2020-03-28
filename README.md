@@ -80,7 +80,7 @@ Tools used on this project
 
 ## Screenshot
 
-![screenshot](./img/screnshot-site.jpg)
+![screenshot](./img/screenshop.png)
 
 ## Live Demo
 
