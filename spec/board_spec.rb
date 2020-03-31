@@ -3,16 +3,9 @@ require_relative '../lib/board.rb'
 require_relative '../lib/coordinate.rb'
 
 RSpec.describe Board do
-  let(:array) do
-    [
-      [1, 2, 3],
-      [4, 5, 6],
-      [7, 8, 9]
-    ]
-  end
   let(:board) { Board.new }
-  symbol_x = 'X'
-  symbol_o = 'O'
+  let(:symbol_x) { "X" }
+  let(:symbol_o) { "O" }
   describe '#display_board' do
     context 'when board initialized' do
       board = Board.new
@@ -22,10 +15,10 @@ RSpec.describe Board do
       end
     end
     context 'when board is updated' do
-      board = Board.new
-      board.update_board(1, symbol_x)
-      board.update_board(5, symbol_o)
       it 'returns board string with the current state of the board' do
+        board = Board.new
+        board.update_board(1, symbol_x)
+        board.update_board(5, symbol_o)
         expected = "\n|  X    2    3  |\n|  4    O    6  |\n|  7    8    9  |\n"
         expect(board.display_board).to eq(expected)
       end
