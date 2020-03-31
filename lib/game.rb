@@ -43,9 +43,5 @@ class Game
     @board.check_line_of_symbols(symbol)
   end
 
-  def draw?(_symbol)
-    @board.check_line_draw
-  end
-
   def randon_symbol; end
 end

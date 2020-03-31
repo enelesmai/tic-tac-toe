@@ -35,6 +35,7 @@ class Board
   def update_board(position, symbol)
     coordinate = get_coord(position)
     @array[coordinate.coor_x][coordinate.coor_y] = symbol
+    @array
   end
 
   # rubocop:disable Metrics/CyclomaticComplexity
@@ -76,9 +77,5 @@ class Board
       end
     end
     valid
-  end
-
-  def check_line_draw
-    !check_line_of_symbols(@array[0][0])
   end
 end
