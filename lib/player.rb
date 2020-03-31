@@ -34,6 +34,10 @@ class Player
   end
 
   def show_info_player
-    "symbol: #{symbol}    Name: #{name.upcase}"
+    if name.nil? || symbol.nil?
+      'info player is empty'
+    else
+      "symbol: #{symbol}    Name: #{name.upcase}"
+    end
   end
 end
