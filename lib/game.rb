@@ -3,9 +3,7 @@ require './lib/board'
 class Game
   attr_reader :message
   attr_reader :current_board
-  def initialize; end
-
-  def start
+  def initialize()
     @board = Board.new
     @current_board = @board.display_board
   end

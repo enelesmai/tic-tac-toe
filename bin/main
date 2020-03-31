@@ -52,7 +52,6 @@ while play
   end
 
   game = Game.new
-  game.start
   puts game.return_current_board
 
   r = 1
