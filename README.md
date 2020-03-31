@@ -22,6 +22,23 @@ After that you can start the game by running
 
     ./bin/main.rb
 
+## Testing with RSpec 
+
+To run the test cases with RSpec we have to follow this steps:
+
+installing RSpec
+
+    gem install rspec
+
+Once that’s done, you can verify your version of RSpec with, for this project we had used the version 3.9 
+
+    rspec --version
+
+finally run for watch the results
+
+    rspec
+
+
 ## Instructions
 
 Tic Tac Toe is a game for two players who take turns to mark spaces in a 3x3 grid board, using the symbols 'X' and 'O'.
@@ -70,12 +87,14 @@ Concepts used on this project
 - Ruby
 - OOP 
 - Yield
+- Describe, it and context for testing with RSpec
 
 Tools used on this project
 
 - Visual Studio Code
 - VSCode Ruby by Stafford Brunk 0.27.0
 - Rubocop 0.8.3
+- RSpec 3.9
 
 
 ## Screenshot
