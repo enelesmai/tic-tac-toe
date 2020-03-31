@@ -23,10 +23,6 @@ class PlayerList
     end
   end
 
-  def list_players
-    @players_list.each { |hkey, v| p "key =>#{hkey} Player =>#{v.name} Symbol =>#{v.symbol}" }
-  end
-
   def validate_unique_name(player)
     @players_list.key?(player.name)
   end
