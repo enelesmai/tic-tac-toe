@@ -4,8 +4,8 @@ require_relative '../lib/coordinate.rb'
 
 RSpec.describe Board do
   let(:board) { Board.new }
-  let(:symbol_x) { "X" }
-  let(:symbol_o) { "O" }
+  let(:symbol_x) { 'X' }
+  let(:symbol_o) { 'O' }
   describe '#display_board' do
     context 'when board initialized' do
       board = Board.new
