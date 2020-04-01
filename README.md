@@ -41,7 +41,7 @@ finally run for watch the results
 
 ## Watch the result of RSpec
 
-if you want to see the result of testing with rspec follow this link [Results](https://raw.githack.com/enelesmai/enumerable-methods/testing-specs/rspec_results.html)
+if you want to see the result of testing with rspec follow this link [Results](https://raw.githack.com/enelesmai/tic-tac-toe/testing-with-rspec/rspec_results.html)
 
 ![image](./img/screenshop-rspec.png)
 
