@@ -78,7 +78,9 @@ while play
     var_winner = game.winner?(current_player.symbol)
     break if var_winner == true
 
-    var_draw = true if !var_winner && r > 8
+    var_draw = game.draw?(current_player.symbol) # true if !var_winner && r > 8
+    break if var_draw == true
+
     r += 1
   end
 

@@ -78,4 +78,23 @@ class Board
     end
     valid
   end
+
+  def check_line_draw(symbol)
+    valid = true
+    @valid_lines.each do |line|
+      array_values = []
+      line.each do |position|
+        coordinate = get_coord(position)
+        array_values.push(@array[coordinate.coor_x][coordinate.coor_y])
+      end
+      if array_values.any?(Integer)
+        valid = false
+        break
+      elsif array_values.all?(symbol)
+        valid = false
+        break
+      end
+    end
+    valid
+  end
 end
