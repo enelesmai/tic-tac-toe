@@ -41,9 +41,91 @@ finally run for watch the results
 
 ## Watch the result of RSpec
 
-if you want to see the result of testing with rspec follow this link [Results](https://raw.githack.com/enelesmai/tic-tac-toe/testing-with-rspec/rspec_results.html)
+You can see the result of testing 
 
-![image](./img/screenshop-rspec.png)
+```
+Board
+  #display_board
+    when board initialized
+      returns board string with the initial state of the board
+    when board is updated
+      returns board string with the current state of the board
+  #update_board
+    updating positions on the board with given symbol
+      returns the board array with the symbols updated
+  #get_coord
+    Create a Coordinate related to the position given
+      returns coordinate(0,1) when position is 2
+      returns coordinate(1,2) when position is 6
+  #position_taken
+    when position is given
+      returns true when position is already taken
+      returns false when position is available
+  #check_line_of_symbols
+    check when a line is filled with the same symbol
+      returs true if a all line is filled with the gicen symbol
+      returs true if a all line is filled with the given symbol
+  #check_line_draw
+    check when all line are not filled with the same symbol    
+      returs true if all lines are not filled with the given symbol
+      returs false if some line is filled with the given symbol
+
+Game
+  #validate_position
+    when the position is not Integer
+      return false when input empty
+      return false when input white space
+      return false when input string
+    when the position is negative
+      return false for negative
+    when the position is taked
+      return false for invalid position
+    when the position is not taked
+      return true for valid position
+  #winner
+    when there is a winner
+      return true
+    when there is not a winner
+      return false
+  #check_line_draw
+    when there is a draw
+      return true
+
+PlayerList
+  #add_player
+    add a new player
+      returns true when a new player is added to the playerlist
+      returns true when a new player is added to the playerlist
+      returns false when a repeated is added to the playerlist
+  #validate_unique_name
+    when name added a new player
+      returns false when name does not exist
+      returns true when name already exists
+
+Player
+  #validate_name
+    When name is not given
+      return false if name is nil or empty
+      return false if name is nil or empty
+    When name is given
+      return false if name have white spaces
+      return false if name have white spaces
+  #validate_symbol
+    When symbol is not given
+      return false if symbol is nil or empty
+      return false if symbol is nil or empty
+    When symbol is given
+      return false if symbol have white spaces
+      return false if symbol have white spaces
+  #show_info_player
+    when name and symbol exists
+      return string
+    when name and symbol does not exists
+      return info player is empty
+
+Finished in 0.3107 seconds (files took 0.34145 seconds to load)
+35 examples, 0 failures
+```
 
 
 
