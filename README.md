@@ -39,6 +39,14 @@ finally run for watch the results
     rspec
 
 
+## Watch the result of RSpec
+
+if you want to see the result of testing with rspec follow this link [Results](https://raw.githack.com/enelesmai/enumerable-methods/testing-specs/rspec_results.html)
+
+![image](./img/screenshop-rspec.png)
+
+
+
 ## Instructions
 
 Tic Tac Toe is a game for two players who take turns to mark spaces in a 3x3 grid board, using the symbols 'X' and 'O'.
