@@ -3,9 +3,7 @@ require './lib/board'
 class Game
   attr_reader :message
   attr_reader :current_board
-  def initialize; end
-
-  def start
+  def initialize()
     @board = Board.new
     @current_board = @board.display_board
   end
@@ -45,8 +43,8 @@ class Game
     @board.check_line_of_symbols(symbol)
   end
 
-  def draw?(_symbol)
-    @board.check_line_draw
+  def draw?(symbol)
+    @board.check_line_draw(symbol)
   end
 
   def randon_symbol; end
