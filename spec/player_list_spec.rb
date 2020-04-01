@@ -1,4 +1,3 @@
-require 'rspec'
 require_relative '../lib/player_list.rb'
 
 RSpec.describe PlayerList do

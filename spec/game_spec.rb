@@ -1,4 +1,3 @@
-require 'rspec'
 require_relative '../lib/game.rb'
 
 RSpec.describe Game do
@@ -55,6 +54,23 @@ RSpec.describe Game do
     context 'when there is not a winner' do
       it 'return false' do
         expect(game.winner?('O')).to eql(false)
+      end
+    end
+  end
+
+  describe '#check_line_draw' do
+    context 'when there is a draw' do
+      it 'return true' do
+        game.validate_position(1, player1)
+        game.validate_position(2, player2)
+        game.validate_position(3, player1)
+        game.validate_position(4, player2)
+        game.validate_position(5, player1)
+        game.validate_position(6, player2)
+        game.validate_position(7, player2)
+        game.validate_position(8, player1)
+        game.validate_position(9, player2)
+        expect(game.draw?('X')).to eql(true)
       end
     end
   end

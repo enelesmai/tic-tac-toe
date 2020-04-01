@@ -1,4 +1,3 @@
-require 'rspec'
 require_relative '../lib/board.rb'
 require_relative '../lib/coordinate.rb'
 
@@ -76,10 +75,38 @@ RSpec.describe Board do
         board.update_board(3, symbol_x)
         expect(board.check_line_of_symbols(symbol_x)).to eq(true)
       end
-      it 'returs true if a all line is filled with the gicen symbol' do
+      it 'returs true if a all line is filled with the given symbol' do
         board.update_board(5, symbol_o)
         board.update_board(7, symbol_o)
         expect(board.check_line_of_symbols(symbol_o)).to eq(false)
+      end
+    end
+  end
+  describe '#check_line_draw' do
+    context 'check when all line are not filled with the same symbol' do
+      it 'returs true if all lines are not filled with the given symbol' do
+        board.update_board(1, symbol_o)
+        board.update_board(2, symbol_o)
+        board.update_board(3, symbol_x)
+        board.update_board(4, symbol_x)
+        board.update_board(5, symbol_x)
+        board.update_board(6, symbol_o)
+        board.update_board(7, symbol_o)
+        board.update_board(8, symbol_x)
+        board.update_board(9, symbol_o)
+        expect(board.check_line_draw(symbol_x)).to eq(true)
+      end
+      it 'returs false if some line is filled with the given symbol' do
+        board.update_board(1, symbol_o)
+        board.update_board(2, symbol_o)
+        board.update_board(3, symbol_x)
+        board.update_board(4, symbol_x)
+        board.update_board(5, symbol_x)
+        board.update_board(6, symbol_o)
+        board.update_board(7, symbol_x)
+        board.update_board(8, symbol_o)
+        board.update_board(9, symbol_o)
+        expect(board.check_line_draw(symbol_x)).to eq(false)
       end
     end
   end
